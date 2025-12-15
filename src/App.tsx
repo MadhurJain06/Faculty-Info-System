@@ -16,6 +16,7 @@ import Courses from "./pages/Courses";
 import Publications from "./pages/Publications";
 import AddFaculty from "./pages/AddFaculty";
 import NotFound from "./pages/NotFound";
+import DeleteFaculty from './pages/DeleteFaculty';
 
 const queryClient = new QueryClient();
 
@@ -57,6 +58,7 @@ const App = () => (
                 <Route path="/publications" element={<Publications />} />
                 <Route path="/add-faculty" element={<AddFaculty />} />
                 <Route path="*" element={<NotFound />} />
+                <Route path="/delete-faculty" element={<DeleteFaculty />} />
               </Routes>
             </main>
           </div>
