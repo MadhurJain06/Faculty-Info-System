@@ -4,12 +4,15 @@ import { Users, BookOpen, Building2, FileText, UserPlus } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Card } from "@/components/ui/card";
+import { Trash2 } from 'lucide-react';
 
 const Dashboard = () => {
   const { data: facultyCount } = useQuery({
     queryKey: ["facultyCount"],
     queryFn: async () => {
-      const { count } = await supabase.from("faculty").select("*", { count: "exact", head: true });
+      const { count } = await supabase
+        .from("faculty")
+        .select("*", { count: "exact", head: true });
       return count || 0;
     },
   });
@@ -17,7 +20,9 @@ const Dashboard = () => {
   const { data: coursesCount } = useQuery({
     queryKey: ["coursesCount"],
     queryFn: async () => {
-      const { count } = await supabase.from("courses").select("*", { count: "exact", head: true });
+      const { count } = await supabase
+        .from("courses")
+        .select("*", { count: "exact", head: true });
       return count || 0;
     },
   });
@@ -25,7 +30,9 @@ const Dashboard = () => {
   const { data: departmentsCount } = useQuery({
     queryKey: ["departmentsCount"],
     queryFn: async () => {
-      const { count } = await supabase.from("departments").select("*", { count: "exact", head: true });
+      const { count } = await supabase
+        .from("departments")
+        .select("*", { count: "exact", head: true });
       return count || 0;
     },
   });
@@ -33,7 +40,9 @@ const Dashboard = () => {
   const { data: publicationsCount } = useQuery({
     queryKey: ["publicationsCount"],
     queryFn: async () => {
-      const { count } = await supabase.from("publications").select("*", { count: "exact", head: true });
+      const { count } = await supabase
+        .from("publications")
+        .select("*", { count: "exact", head: true });
       return count || 0;
     },
   });
@@ -85,11 +94,14 @@ const Dashboard = () => {
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
         <Breadcrumbs />
-        
+
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-foreground mb-2">Faculty Information System</h1>
+          <h1 className="text-4xl font-bold text-foreground mb-2">
+            Faculty Information System
+          </h1>
           <p className="text-lg text-muted-foreground">
-            Comprehensive management system for faculty, courses, and publications
+            Comprehensive management system for faculty, courses, and
+            publications
           </p>
         </div>
 
@@ -101,7 +113,9 @@ const Dashboard = () => {
                 <Card className="p-6 hover:shadow-lg transition-all duration-300 border-stat-card-border hover:bg-stat-card-hover cursor-pointer group">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-muted-foreground mb-1">{stat.title}</p>
+                      <p className="text-sm font-medium text-muted-foreground mb-1">
+                        {stat.title}
+                      </p>
                       <p className="text-3xl font-bold text-foreground group-hover:text-primary transition-colors">
                         {stat.value}
                       </p>
@@ -118,7 +132,9 @@ const Dashboard = () => {
 
         <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
           <Card className="p-6 border-stat-card-border">
-            <h2 className="text-xl font-semibold mb-4 text-foreground">Quick Actions</h2>
+            <h2 className="text-xl font-semibold mb-4 text-foreground">
+              Quick Actions
+            </h2>
             <div className="space-y-3">
               <Link
                 to="/add-faculty"
@@ -132,18 +148,29 @@ const Dashboard = () => {
               >
                 View Faculty Directory
               </Link>
+              <Link
+                to="/delete-faculty"
+                className="w-full bg-red-600 hover:bg-red-700 text-white px-6 py-4 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+              >
+                <Trash2 className="w-5 h-5" />
+                Delete Faculty Member
+              </Link>
             </div>
           </Card>
 
           <Card className="p-6 border-stat-card-border">
-            <h2 className="text-xl font-semibold mb-4 text-foreground">System Overview</h2>
+            <h2 className="text-xl font-semibold mb-4 text-foreground">
+              System Overview
+            </h2>
             <div className="space-y-4 text-muted-foreground">
               <p>
-                Welcome to the Faculty Information Management System. This platform helps manage faculty
-                information, course assignments, department organization, and academic publications.
+                Welcome to the Faculty Information Management System. This
+                platform helps manage faculty information, course assignments,
+                department organization, and academic publications.
               </p>
               <p className="text-sm">
-                Navigate through different sections using the menu above or click on any statistics card to explore.
+                Navigate through different sections using the menu above or
+                click on any statistics card to explore.
               </p>
             </div>
           </Card>
